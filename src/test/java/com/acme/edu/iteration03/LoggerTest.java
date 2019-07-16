@@ -22,8 +22,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
     //endregion
 
-    /*
-    TODO: implement Logger solution to match specification as tests
+
 
     @Test
     public void shouldLogIntegersArray() throws IOException {
@@ -32,12 +31,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutEquals(
+        assertSysoutContains(
             "primitives array: {-1, 0, 1}\n"
         );
         //endregion
     }
-
+/*
     @Test
     public void shouldLogIntegersMatrix() throws IOException {
         //region when
@@ -71,7 +70,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         );
         //endregion
     }
-
+*/
     @Test
     public void shouldLogStringsWithOneMethodCall() throws IOException {
         //region when
@@ -79,10 +78,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutContains("str1\nstring 2\nstr 3");
+        assertSysoutEquals("str1\nstring 2\nstr 3");
         //endregion
     }
-
+/*
     @Test
     public void shouldLogIntegersWithOneMethodCall() throws IOException {
         //region when
@@ -110,6 +109,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains(11);
         //endregion
     }
-
+    */
+    /*
+    TODO: implement Logger solution to match specification as tests
     */
 }
