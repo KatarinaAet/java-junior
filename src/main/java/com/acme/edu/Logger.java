@@ -1,10 +1,9 @@
 package com.acme.edu;
 
-import java.sql.SQLOutput;
-
 public class Logger {
     private static Object current = null;
-    private static String currentState = "None";
+    //private static String State = "None";
+    private static State currentState = State.None;
     private static int numbOfCurrentString = 0;
     private static String buffer = "";
 
@@ -22,28 +21,27 @@ public class Logger {
                 return "string: ";
             case "[I":
                 return "primitives array: ";
+            case "[[I":
+                return "primitives matrix: ";
             default:
                 return "reference: ";
         }
     }
 
-    public static void log(int[] message){
-        printTypeLog(message);
-    }
     public static void log(int message) {
         printTypeLog(message);
         switch (currentState){
-            case "None":
+            case None:
                 current = message;
                 printBuffer(current);
                 break;
-            case "String":
+            case String:
                 DropStringBuffer();
                 current = message;
                 printBuffer(current);
                 break;
-            case "Integer":
-            case "Byte":
+            case Integer:
+            case Byte:
                 if (!overflow(message)){
                     current = (int) current + message;
                     printBuffer(current);
@@ -55,26 +53,16 @@ public class Logger {
                 printBuffer(current);
                 break;
         }
-        currentState = "Integer";
+        currentState = State.Integer;
+    }
 
-        /*if (current == null){
-            current = message;
-            printBuffer(current);
-        }
-        else {
-            String curType = current.getClass().getName();
-            if(( curType.equals("java.lang.Integer"))||(curType.equals("java.lang.Byte"))) {
-                current = (int) current + message;
-                printBuffer(current);
-            }
-            else {
-                buffer += current + "\n";
-                current = message;
-                printBuffer(current);
-            }
-        }
+    public static void log(int[] message){
+        printTypeLog(message);
+    }
 
-         */
+
+    public static void log(int[][] message){
+        typeName(message);
     }
 /*
     public static void log(byte message) {
@@ -107,10 +95,10 @@ public class Logger {
     public static void log(String message) {
         printTypeLog(message);
         switch (currentState) {
-            case "None":
+            case None:
                 current = message;
                 break;
-            case "String":
+            case String:
                 if (current.equals(message)) {
                     numbOfCurrentString += 1;
                     printBuffer(current + " (x"+numbOfCurrentString+")");
@@ -128,7 +116,7 @@ public class Logger {
                 break;
         }
             printBuffer(current);
-            currentState = "String";
+            currentState = State.String;
     }
 
     private static void DropStringBuffer(){
@@ -152,8 +140,8 @@ public class Logger {
     private static void logNoSum(Object message) {
         printTypeLog(message);
         switch (currentState) {
-            case "None": break;
-            case "String":
+            case None: break;
+            case String:
                 DropStringBuffer();
                 break;
             default:
@@ -162,18 +150,7 @@ public class Logger {
         }
         current = message;
         printBuffer(current);
-        currentState= "NoSum";
-  /*      if (current == null){
-            current = message;
-            printBuffer(current);
-        }
-        else {
-            buffer += current + "\n";
-            current = message;
-            printBuffer(current);
-        }
-
-   */
+        currentState = State.NoSum;
     }
     private static boolean overflow (int message){
         if (message > Integer.MAX_VALUE - (int)current){
@@ -193,25 +170,25 @@ public class Logger {
             System.out.print(item + "\n");
         }
 */
-        String arrayElements = "";
+        StringBuilder arrayElements = new StringBuilder();
         for(int i = 0; i < message.length; i++){
             if (i == message.length - 1){
-                arrayElements += message[i];
+                arrayElements.append(message[i]);
             }
             else {
-                arrayElements += message[i] + "\n";
+                arrayElements.append(message[i]).append("\n");
             }
         }
         System.out.print(arrayElements);
     }
     private static void printTypeLog(int[] message) {
-        String arrayElements = "";
+        StringBuilder arrayElements = new StringBuilder();
         for(int i = 0; i < message.length; i++){
             if (i == message.length - 1){
-                arrayElements += message[i];
+                arrayElements.append(message[i]);
             }
             else {
-                arrayElements += message[i] + ", ";
+                arrayElements.append(message[i]).append(", ");
             }
         }
         System.out.print(typeName(message)+ "{" + arrayElements + "}\n");
