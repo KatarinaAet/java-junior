@@ -1,12 +1,13 @@
 package com.acme.edu;
 
 public class Logger {
+    /*
     private static Object current = null;
-    //private static String State = "None";
     private static State currentState = State.None;
     private static int numbOfCurrentString = 0;
     private static String buffer = "";
-
+    */
+/*
     private static String typeName(Object message){
         if (message == null) return "null: ";
         String name = message.getClass().getName();
@@ -27,8 +28,12 @@ public class Logger {
                 return "reference: ";
         }
     }
-
+    */
     public static void log(int message) {
+        Command inputCommand = new Command(message);
+        LogControl.process(inputCommand);
+    }
+/*    public static void log(int message) {
         printTypeLog(message);
         switch (currentState){
             case None:
@@ -55,16 +60,22 @@ public class Logger {
         }
         currentState = State.Integer;
     }
+*/
+    public static void log(int[] message) {
+        Command inputCommand = new Command(message);
+        LogControl.process(inputCommand);
+}
 
-    public static void log(int[] message){
+ /*   public static void log(int[] message){
         printTypeLog(message);
     }
+
 
 
     public static void log(int[][] message){
         typeName(message);
     }
-/*
+*//*
     public static void log(byte message) {
         printTypeLog(message);
         if (current == null){
@@ -86,12 +97,28 @@ public class Logger {
     }
 */
     public static void log(char message) {
+        Command inputCommand = new Command(message);
+        LogControl.process(inputCommand);
+    }
+   /* public static void log(char message) {
         logNoSum(message);
     }
-
+*/
+   public static void log(String ...  message) {
+       Command inputCommand = new Command(message);
+       LogControl.process(inputCommand);
+   }
+   /*
     public static void log(String ... message){
         printTypeLog(message);
     }
+
+    */
+   public static void log(String message) {
+       Command inputCommand = new Command(message);
+       LogControl.process(inputCommand);
+   }
+   /*
     public static void log(String message) {
         printTypeLog(message);
         switch (currentState) {
@@ -118,7 +145,7 @@ public class Logger {
             printBuffer(current);
             currentState = State.String;
     }
-
+*//*
     private static void DropStringBuffer(){
         if (numbOfCurrentString > 1){
             buffer += current + " (x"+numbOfCurrentString+")\n";
@@ -127,16 +154,27 @@ public class Logger {
             buffer += current + "\n";
         }
         numbOfCurrentString = 0;
-    }
+    }*/
 
+    public static void log(boolean message) {
+        Command inputCommand = new Command(message);
+        LogControl.process(inputCommand);
+    }
+   /*
     public static void log(boolean message) {
         logNoSum(message);
     }
-
+*/
+   public static void log(Object message) {
+       Command inputCommand = new Command(message);
+       LogControl.process(inputCommand);
+   }
+   /*
     public static void log(Object message) {
          logNoSum(message);
     }
-
+*/
+   /*
     private static void logNoSum(Object message) {
         printTypeLog(message);
         switch (currentState) {
@@ -165,11 +203,12 @@ public class Logger {
         System.out.println(buffer + message+"\n");
     }
 
+
     private static void printTypeLog(String... message){
         /*for(String item: message){
             System.out.print(item + "\n");
         }
-*/
+*//*
         StringBuilder arrayElements = new StringBuilder();
         for(int i = 0; i < message.length; i++){
             if (i == message.length - 1){
@@ -180,7 +219,8 @@ public class Logger {
             }
         }
         System.out.print(arrayElements);
-    }
+    }*/
+    /*
     private static void printTypeLog(int[] message) {
         StringBuilder arrayElements = new StringBuilder();
         for(int i = 0; i < message.length; i++){
@@ -193,8 +233,10 @@ public class Logger {
         }
         System.out.print(typeName(message)+ "{" + arrayElements + "}\n");
     }
+
+     *//*
     private static void printTypeLog(Object message) {
         System.out.print(typeName(message)+ message+"\n");
-    }
+    }*/
 
 }

@@ -36,7 +36,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         );
         //endregion
     }
-
+/*
     @Test
     public void shouldLogIntegersMatrix() throws IOException {
         //region when
@@ -53,7 +53,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         );
         //endregion
     }
-/*
+*//*
     @Test
     public void shouldLogIntegersMulitidimentionalArray() throws IOException {
         //region when
@@ -78,7 +78,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutEquals("str1\nstring 2\nstr 3");
+        assertSysoutContains("str1\nstring 2\nstr 3");
         //endregion
     }
 /*
