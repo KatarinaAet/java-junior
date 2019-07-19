@@ -5,9 +5,11 @@ import static java.lang.System.lineSeparator;
 public class StringCommand implements Command{
     private static Object message;
     private static  State messageState;
+    private static int numbOfCurrentString = 0;
     public StringCommand(String message){
         this.message = message;
         this.messageState = State.String;
+        this.numbOfCurrentString = 1;
     }
     public String typeName() {
         return "string: ";
@@ -19,7 +21,7 @@ public class StringCommand implements Command{
     }
 
     public Object getMessage() {
-        return message;
+        return numbOfCurrentString > 1 ? message + " (x"+numbOfCurrentString+")" : message;
     }
 
     public String toString(){
@@ -31,7 +33,15 @@ public class StringCommand implements Command{
     }
 
     public Object sum(Object adjacentCommand) {
-        return 0;
+        if (message.equals((adjacentCommand))){
+            numbOfCurrentString ++;
+            return getMessage();
+        }
+        else {
+            String sumResult = (String) getMessage();
+            message = adjacentCommand;
+            return sumResult;
+        }
        /* if (message.equals(adjacentCommand)) {
             numbOfCurrentString += 1;
             printBuffer(current + " (x"+numbOfCurrentString+")");

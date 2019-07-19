@@ -5,6 +5,8 @@ import static java.lang.System.lineSeparator;
 public class IntCommand implements Command{
     private static Object message;
     private static  State messageState;
+    private LogBuffer localBuffer;
+
     IntCommand(int message){
         this.message = message;
         this.messageState = State.Integer;
@@ -25,16 +27,50 @@ public class IntCommand implements Command{
     public String toString(){
         return message.toString();
     }
-
+/*
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return message instanceof adjacentCommand.getMessage();
+    }
+*/
     public State getState() {
         return messageState;
     }
 
+   /* public IntCommand sum(IntCommand adjacentCommand){
+        if (!overflow((int )adjacentCommand.getMessage())){
+            int result = (int)message + (int)adjacentCommand.getMessage();
+            return new IntCommand(result);
+        }
+        else{
+            LogControl.buffer += message.toString() + "\n";
+            return adjacentCommand;
+        }
+
+    }
+   */
+    public Command sum(Command adjacentCommand){
+        LogControl.buffer += message.toString();
+        return adjacentCommand;
+    }
+/*
     public Object sum(Object adjacentCommand) {
-        return 0;
-       /* if (!overflow(message)){
-            return  (int)message + adjacentCommand;
-        }*/
+        if (!overflow((int) adjacentCommand)){
+            message = (int)message + (int)adjacentCommand;
+            return message;
+        }
+        else{
+            //message = ;
+            localBuffer.add((Command) adjacentCommand);
+        }
+
+    }
+*/
+    private static boolean overflow (int adjacentCommand){
+        if (adjacentCommand > Integer.MAX_VALUE - (int)message){
+            return true;
+        }
+        return false;
     }
 
 
