@@ -9,7 +9,7 @@ public class LogBuffer {
     private static int numbOfCurrentString = 0;
     private static String buffer = "";
 
-    public static void add(Command inputCommand) {
+    public void add(Command inputCommand) {
         State commandState = inputCommand.getState();
         Object message = inputCommand.getMessage();
         if ((commandState != currentState)||(commandState == State.NoSum)){

@@ -1,6 +1,7 @@
 package com.acme.edu;
 
 public class Logger {
+    static private LogControl controller = new LogControl();
     /*
     private static Object current = null;
     private static State currentState = State.None;
@@ -30,8 +31,8 @@ public class Logger {
     }
     */
     public static void log(int message) {
-        Command inputCommand = new Command(message);
-        LogControl.process(inputCommand);
+        IntCommand inputCommand = new IntCommand(message);
+        controller.process(inputCommand);
     }
 /*    public static void log(int message) {
         printTypeLog(message);
@@ -61,8 +62,9 @@ public class Logger {
         currentState = State.Integer;
     }
 */
+
     public static void log(int[] message) {
-        Command inputCommand = new Command(message);
+        IntArrayCommand inputCommand = new IntArrayCommand(message);
         LogControl.process(inputCommand);
 }
 
@@ -96,18 +98,22 @@ public class Logger {
         }
     }
 */
+
     public static void log(char message) {
-        Command inputCommand = new Command(message);
+        CharCommand inputCommand = new CharCommand(message);
         LogControl.process(inputCommand);
     }
    /* public static void log(char message) {
         logNoSum(message);
     }
-*/
-   public static void log(String ...  message) {
-       Command inputCommand = new Command(message);
+    */
+
+   public static void log(String... message) {
+       StringArrayCommand inputCommand = new StringArrayCommand(message);
        LogControl.process(inputCommand);
    }
+
+
    /*
     public static void log(String ... message){
         printTypeLog(message);
@@ -115,7 +121,7 @@ public class Logger {
 
     */
    public static void log(String message) {
-       Command inputCommand = new Command(message);
+       StringCommand inputCommand = new StringCommand(message);
        LogControl.process(inputCommand);
    }
    /*
@@ -155,18 +161,19 @@ public class Logger {
         }
         numbOfCurrentString = 0;
     }*/
-
+/*//TODO
     public static void log(boolean message) {
         Command inputCommand = new Command(message);
         LogControl.process(inputCommand);
-    }
+    }*/
    /*
     public static void log(boolean message) {
         logNoSum(message);
     }
-*/
+*/ //ENDOF TODO
+
    public static void log(Object message) {
-       Command inputCommand = new Command(message);
+       ReferenceCommand inputCommand = new ReferenceCommand(message);
        LogControl.process(inputCommand);
    }
    /*

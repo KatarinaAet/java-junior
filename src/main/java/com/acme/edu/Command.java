@@ -2,14 +2,15 @@ package com.acme.edu;
 
 import static java.lang.System.lineSeparator;
 
-public class Command {
-    private static Object message;
+public interface Command {
+   /* private static Object message;
     private static  State messageState;
-    public Command(int message){
+    */
+    /*public Command(int message){
         this.message = message;
         this.messageState = State.Integer;
     }
-
+/*
     public Command(int[] message){
         this.message = message;
         this.messageState = State.NoSum;
@@ -44,8 +45,17 @@ public class Command {
         this.message = message;
         this.messageState = State.NoSum;
     }
+*/
 
-    private static String typeName() {
+   String typeName();
+
+   String typedMessage();
+
+   Object sum(Object adjacentCommand);
+   Object getMessage();
+   State getState();
+   public String toString();
+   /* private static String typeName() {
         if (message == null) return "null: ";
         String name = message.getClass().getName();
         switch (name){
@@ -110,7 +120,7 @@ public class Command {
         if (!overflow(message)){
             return  (int)message + adjacentCommand;
         }
-    }
+    }r
 
     public static String sum(String adjacentCommand) {
         if (message.equals(adjacentCommand)) {
@@ -123,7 +133,7 @@ public class Command {
             numbOfCurrentString = 1;
         }
     }
-*/
+*//*
     public Object getMessage()
     {
         return message;
@@ -145,4 +155,5 @@ public class Command {
     public State getState() {
         return messageState;
     }
+    */
 }
