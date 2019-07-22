@@ -18,7 +18,7 @@ public class NoneCommand implements Command {
 
     @Override
     public Command sum(Command adjacentCommand) {
-        //LogControl.buffer += adjacentCommand.getMessage().toString() + "\n";
+        LogControl.buffer += adjacentCommand.getMessage().toString() + "\n";
         return adjacentCommand;
     }
 

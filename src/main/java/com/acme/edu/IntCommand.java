@@ -65,20 +65,19 @@ public class IntCommand implements Command{
         }
     }
 
-/*
-    @Override
-    public Command sum(Command adjacentCommand) {
-        if (!overflow((int) adjacentCommand)){
-            message = (int)message + (int)adjacentCommand;
-            return message;
+    /*
+        @Override
+        public Command sum(Command adjacentCommand) {
+            if (!overflow((int) adjacentCommand)){
+                message = (int)message + (int)adjacentCommand;
+                return message;
+            }
+            else{
+                //message = ;
+                localBuffer.add((Command) adjacentCommand);
+            }
         }
-        else{
-            //message = ;
-            localBuffer.add((Command) adjacentCommand);
-        }
-
-    }
-*/
+    */
     private static boolean overflow (int adjacentCommand){
         if (adjacentCommand > Integer.MAX_VALUE - (int)message){
             return true;

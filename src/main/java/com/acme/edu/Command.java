@@ -56,7 +56,6 @@ public interface Command {
    Command sum(Command adjacentCommand);
    Object getMessage();
    State getState();
-   public String toString();
    //boolean typeEquals(Command adjacentCommand);
    /* private static String typeName() {
         if (message == null) return "null: ";
