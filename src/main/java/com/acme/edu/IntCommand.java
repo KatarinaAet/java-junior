@@ -1,5 +1,7 @@
 package com.acme.edu;
 
+import com.sun.corba.se.impl.interceptors.InterceptorInvoker;
+
 import static java.lang.System.lineSeparator;
 
 public class IntCommand implements Command{
@@ -27,34 +29,45 @@ public class IntCommand implements Command{
     public String toString(){
         return message.toString();
     }
-/*
-    @Override
+
+
     public boolean typeEquals(Command adjacentCommand) {
-        return message instanceof adjacentCommand.getMessage();
+        //Logger.currentLogger = message;
+        return adjacentCommand instanceof IntCommand;
     }
-*/
+
     public State getState() {
         return messageState;
     }
 
-   /* public IntCommand sum(IntCommand adjacentCommand){
-        if (!overflow((int )adjacentCommand.getMessage())){
-            int result = (int)message + (int)adjacentCommand.getMessage();
+
+    public IntCommand sumEqual(IntCommand adjacentCommand){
+        if (!overflow((int)adjacentCommand.getMessage())){
+            int result = (int)Logger.currentLogger + (int)adjacentCommand.getMessage();
+            Logger.currentLogger = result;
             return new IntCommand(result);
         }
         else{
-            LogControl.buffer += message.toString() + "\n";
+            LogControl.buffer += Logger.currentLogger.toString() + "\n";
             return adjacentCommand;
         }
 
     }
-   */
+
+    @Override
     public Command sum(Command adjacentCommand){
-        LogControl.buffer += message.toString();
-        return adjacentCommand;
+        if (typeEquals(adjacentCommand)){
+            return sumEqual((IntCommand) adjacentCommand);
+        }
+        else{
+            LogControl.buffer += message.toString()+"\n";
+            return adjacentCommand;
+        }
     }
+
 /*
-    public Object sum(Object adjacentCommand) {
+    @Override
+    public Command sum(Command adjacentCommand) {
         if (!overflow((int) adjacentCommand)){
             message = (int)message + (int)adjacentCommand;
             return message;

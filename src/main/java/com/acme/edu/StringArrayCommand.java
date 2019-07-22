@@ -2,7 +2,7 @@ package com.acme.edu;
 
 import static java.lang.System.lineSeparator;
 
-public class StringArrayCommand implements Command {
+public abstract class StringArrayCommand implements Command {
     private static Object message;
     private static  State messageState;
     public StringArrayCommand(String... message){

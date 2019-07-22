@@ -1,7 +1,11 @@
 package com.acme.edu;
 
+import static com.acme.edu.LogControl.*;
+
 public class Logger {
     static private LogControl controller = new LogControl();
+    //static Command current = null;
+    static Object currentLogger;
     /*
     private static Object current = null;
     private static State currentState = State.None;
@@ -31,7 +35,7 @@ public class Logger {
     }
     */
     public static void log(int message) {
-        IntCommand inputCommand = new IntCommand(message);
+        Command inputCommand = new IntCommand(message);
         controller.process(inputCommand);
     }
 /*    public static void log(int message) {
@@ -65,7 +69,7 @@ public class Logger {
 
     public static void log(int[] message) {
         IntArrayCommand inputCommand = new IntArrayCommand(message);
-        LogControl.process(inputCommand);
+        controller.process(inputCommand);
 }
 
  /*   public static void log(int[] message){
@@ -101,7 +105,7 @@ public class Logger {
 
     public static void log(char message) {
         CharCommand inputCommand = new CharCommand(message);
-        LogControl.process(inputCommand);
+        controller.process(inputCommand);
     }
    /* public static void log(char message) {
         logNoSum(message);
@@ -109,8 +113,8 @@ public class Logger {
     */
 
    public static void log(String... message) {
-       StringArrayCommand inputCommand = new StringArrayCommand(message);
-       LogControl.process(inputCommand);
+       //StringArrayCommand inputCommand = new StringArrayCommand(message);
+       //LogControl.process(inputCommand);
    }
 
 
@@ -122,7 +126,7 @@ public class Logger {
     */
    public static void log(String message) {
        StringCommand inputCommand = new StringCommand(message);
-       LogControl.process(inputCommand);
+       controller.process(inputCommand);
    }
    /*
     public static void log(String message) {
@@ -174,7 +178,7 @@ public class Logger {
 
    public static void log(Object message) {
        ReferenceCommand inputCommand = new ReferenceCommand(message);
-       LogControl.process(inputCommand);
+       controller.process(inputCommand);
    }
    /*
     public static void log(Object message) {

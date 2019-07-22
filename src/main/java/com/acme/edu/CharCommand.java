@@ -30,8 +30,8 @@ public class CharCommand implements Command{
         return messageState;
     }
 
-    public Object sum(Object adjacentCommand) {
-        return 0;
+    public Command sum(Command adjacentCommand) {
+        return null;
        /* if (!overflow(message)){
             return  (int)message + adjacentCommand;
         }*/

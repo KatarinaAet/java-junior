@@ -3,7 +3,7 @@ package com.acme.edu;
 import static java.lang.System.lineSeparator;
 
 public class StringCommand implements Command{
-    private static Object message;
+    public static Object message;
     private static  State messageState;
     private static int numbOfCurrentString = 0;
     public StringCommand(String message){
@@ -32,16 +32,16 @@ public class StringCommand implements Command{
         return messageState;
     }
 
-    public Object sum(Object adjacentCommand) {
-        if (message.equals((adjacentCommand))){
-            numbOfCurrentString ++;
-            return getMessage();
+    public Command sum(Command adjacentCommand) {
+        if (message.equals((adjacentCommand))) {
+            numbOfCurrentString++;
+        } else {
+            LogControl.buffer += getMessage() +"\n";
         }
-        else {
-            String sumResult = (String) getMessage();
-            message = adjacentCommand;
-            return sumResult;
-        }
+        return adjacentCommand;
+    }
+
+        //return null;
        /* if (message.equals(adjacentCommand)) {
             numbOfCurrentString += 1;
             printBuffer(current + " (x"+numbOfCurrentString+")");
@@ -52,7 +52,7 @@ public class StringCommand implements Command{
             numbOfCurrentString = 1;
         }*/
 
-    }
+
 
 
 }
