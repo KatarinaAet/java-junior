@@ -32,12 +32,22 @@ public class StringArrayCommand implements Command {
         return stringArrayToString((String[])message);
     }
 
+    @Override
+    public Command sum(Command adjacentCommand) {
+        return adjacentCommand;
+    }
+
     public Object getMessage() {
         return message;
     }
 
     public String toString(){
         return message.toString();
+    }
+
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return adjacentCommand instanceof StringArrayCommand;
     }
 
     public State getState() {

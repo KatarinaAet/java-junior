@@ -18,7 +18,7 @@ public class NoneCommand implements Command {
 
     @Override
     public Command sum(Command adjacentCommand) {
-        LogControl.buffer += adjacentCommand.getMessage().toString() + "\n";
+        //LogControl.buffer += adjacentCommand.getMessage().toString() + "\n";
         return adjacentCommand;
     }
 
@@ -30,5 +30,10 @@ public class NoneCommand implements Command {
     @Override
     public State getState() {
         return null;
+    }
+
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return false;
     }
 }

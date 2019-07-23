@@ -26,12 +26,17 @@ public class CharCommand implements Command{
         return message.toString();
     }
 
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return adjacentCommand instanceof CharCommand;
+    }
+
     public State getState() {
         return messageState;
     }
 
-    public Object sum(Object adjacentCommand) {
-        return 0;
+    public Command sum(Command adjacentCommand) {
+        return adjacentCommand;
        /* if (!overflow(message)){
             return  (int)message + adjacentCommand;
         }*/

@@ -3,13 +3,12 @@ package com.acme.edu;
 import static java.lang.System.lineSeparator;
 
 public class StringCommand implements Command{
-    private static Object message;
-    private static  State messageState;
-    private static int numbOfCurrentString = 0;
+    private Object message;
+    private State messageState;
+    private int numbOfCurrentString = 1;
     public StringCommand(String message){
         this.message = message;
         this.messageState = State.String;
-        this.numbOfCurrentString = 1;
     }
     public String typeName() {
         return "string: ";
@@ -25,32 +24,29 @@ public class StringCommand implements Command{
     }
 
     public String toString(){
-        return message.toString();
+        return (String) this.getMessage();//message.toString();
+    }
+
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return adjacentCommand instanceof StringCommand;
     }
 
     public State getState() {
         return messageState;
     }
 
-    public Object sum(Object adjacentCommand) {
-        if (message.equals((adjacentCommand))){
+    public Command sum(Command adjacentCommand) {
+        if (message.equals((adjacentCommand.getMessage()))){
             numbOfCurrentString ++;
-            return getMessage();
+            return this;
         }
         else {
             String sumResult = (String) getMessage();
+            LogControl.buffer += sumResult + "\n";
             message = adjacentCommand;
-            return sumResult;
+            return adjacentCommand;
         }
-       /* if (message.equals(adjacentCommand)) {
-            numbOfCurrentString += 1;
-            printBuffer(current + " (x"+numbOfCurrentString+")");
-        }
-        else {
-            DropStringBuffer();
-            current = message;
-            numbOfCurrentString = 1;
-        }*/
 
     }
 

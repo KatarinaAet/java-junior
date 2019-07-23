@@ -3,8 +3,8 @@ package com.acme.edu;
 import static java.lang.System.lineSeparator;
 
 public class IntCommand implements Command{
-    private static Object message;
-    private static  State messageState;
+    private Object message;
+    private State messageState;
     private LogBuffer localBuffer;
 
     IntCommand(int message){
@@ -27,18 +27,24 @@ public class IntCommand implements Command{
     public String toString(){
         return message.toString();
     }
-/*
+
     @Override
     public boolean typeEquals(Command adjacentCommand) {
-        return message instanceof adjacentCommand.getMessage();
+        return adjacentCommand instanceof IntCommand;
     }
-*/
+
+    /*
+        @Override
+        public boolean typeEquals(Command adjacentCommand) {
+            return message instanceof adjacentCommand.getMessage();
+        }
+    */
     public State getState() {
         return messageState;
     }
 
-   /* public IntCommand sum(IntCommand adjacentCommand){
-        if (!overflow((int )adjacentCommand.getMessage())){
+    public Command sum(Command adjacentCommand){
+        if (typeEquals(adjacentCommand)&& (!overflow((int)adjacentCommand.getMessage()))){
             int result = (int)message + (int)adjacentCommand.getMessage();
             return new IntCommand(result);
         }
@@ -48,11 +54,15 @@ public class IntCommand implements Command{
         }
 
     }
-   */
+
+
+
+    /*
     public Command sum(Command adjacentCommand){
         LogControl.buffer += message.toString();
         return adjacentCommand;
     }
+    */
 /*
     public Object sum(Object adjacentCommand) {
         if (!overflow((int) adjacentCommand)){
@@ -66,7 +76,7 @@ public class IntCommand implements Command{
 
     }
 */
-    private static boolean overflow (int adjacentCommand){
+    private boolean overflow (int adjacentCommand){
         if (adjacentCommand > Integer.MAX_VALUE - (int)message){
             return true;
         }

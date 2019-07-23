@@ -31,12 +31,22 @@ public class IntArrayCommand implements Command {
         return typeName() + "{" + intArrayToString((int[]) message) + "}\n";
     }
 
+    @Override
+    public Command sum(Command adjacentCommand) {
+        return adjacentCommand;
+    }
+
     public Object getMessage() {
         return message;
     }
 
     public String toString() {
         return message.toString();
+    }
+
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return adjacentCommand instanceof  IntArrayCommand;
     }
 
     public State getState() {

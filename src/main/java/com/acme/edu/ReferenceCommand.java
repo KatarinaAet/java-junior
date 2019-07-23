@@ -18,12 +18,22 @@ public class ReferenceCommand implements Command {
         return typeName() + message + newLine;
     }
 
+    @Override
+    public Command sum(Command adjacentCommand) {
+        return adjacentCommand;
+    }
+
     public Object getMessage() {
         return message;
     }
 
     public String toString(){
         return message.toString();
+    }
+
+    @Override
+    public boolean typeEquals(Command adjacentCommand) {
+        return adjacentCommand instanceof ReferenceCommand;
     }
 
     public State getState() {
