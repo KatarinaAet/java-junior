@@ -1,11 +1,13 @@
 package com.acme.edu;
 
+import java.lang.invoke.WrongMethodTypeException;
+
 import static java.lang.System.lineSeparator;
 
 public class IntCommand implements Command{
     private Object message;
     private State messageState;
-    private LogBuffer localBuffer;
+
 
     IntCommand(int message){
         this.message = message;
@@ -33,17 +35,11 @@ public class IntCommand implements Command{
         return adjacentCommand instanceof IntCommand;
     }
 
-    /*
-        @Override
-        public boolean typeEquals(Command adjacentCommand) {
-            return message instanceof adjacentCommand.getMessage();
-        }
-    */
     public State getState() {
         return messageState;
     }
 
-    public Command sum(Command adjacentCommand){
+    public Command sum(Command adjacentCommand) throws WrongMethodTypeException {
         if (typeEquals(adjacentCommand)&& (!overflow((int)adjacentCommand.getMessage()))){
             int result = (int)message + (int)adjacentCommand.getMessage();
             return new IntCommand(result);
@@ -56,26 +52,6 @@ public class IntCommand implements Command{
     }
 
 
-
-    /*
-    public Command sum(Command adjacentCommand){
-        LogControl.buffer += message.toString();
-        return adjacentCommand;
-    }
-    */
-/*
-    public Object sum(Object adjacentCommand) {
-        if (!overflow((int) adjacentCommand)){
-            message = (int)message + (int)adjacentCommand;
-            return message;
-        }
-        else{
-            //message = ;
-            localBuffer.add((Command) adjacentCommand);
-        }
-
-    }
-*/
     private boolean overflow (int adjacentCommand){
         if (adjacentCommand > Integer.MAX_VALUE - (int)message){
             return true;

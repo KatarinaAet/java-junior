@@ -1,11 +1,13 @@
 package com.acme.edu;
 
+import java.lang.invoke.WrongMethodTypeException;
+
 import static java.lang.System.lineSeparator;
 
 public class StringArrayCommand implements Command {
     private static Object message;
     private static  State messageState;
-    public StringArrayCommand(String... message){
+    public StringArrayCommand(String... message) throws WrongMethodTypeException {
         this.message = message;
         this.messageState = State.NoSum;
     }
@@ -33,7 +35,7 @@ public class StringArrayCommand implements Command {
     }
 
     @Override
-    public Command sum(Command adjacentCommand) {
+    public Command sum(Command adjacentCommand)  throws WrongMethodTypeException {
         return adjacentCommand;
     }
 

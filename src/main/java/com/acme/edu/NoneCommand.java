@@ -1,5 +1,7 @@
 package com.acme.edu;
 
+import java.lang.invoke.WrongMethodTypeException;
+
 public class NoneCommand implements Command {
     private static  State messageState;
     public NoneCommand(){
@@ -17,7 +19,7 @@ public class NoneCommand implements Command {
     }
 
     @Override
-    public Command sum(Command adjacentCommand) {
+    public Command sum(Command adjacentCommand) throws WrongMethodTypeException {
         //LogControl.buffer += adjacentCommand.getMessage().toString() + "\n";
         return adjacentCommand;
     }

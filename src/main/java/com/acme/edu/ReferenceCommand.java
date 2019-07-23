@@ -1,11 +1,13 @@
 package com.acme.edu;
 
+import java.lang.invoke.WrongMethodTypeException;
+
 import static java.lang.System.lineSeparator;
 
 public class ReferenceCommand implements Command {
     private static Object message;
     private static  State messageState;
-    ReferenceCommand(Object message){
+    ReferenceCommand(Object message) throws WrongMethodTypeException {
         this.message = message;
         this.messageState = State.NoSum;
     }
@@ -19,7 +21,7 @@ public class ReferenceCommand implements Command {
     }
 
     @Override
-    public Command sum(Command adjacentCommand) {
+    public Command sum(Command adjacentCommand)  throws WrongMethodTypeException {
         return adjacentCommand;
     }
 

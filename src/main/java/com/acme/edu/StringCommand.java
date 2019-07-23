@@ -1,12 +1,14 @@
 package com.acme.edu;
 
+import java.lang.invoke.WrongMethodTypeException;
+
 import static java.lang.System.lineSeparator;
 
 public class StringCommand implements Command{
     private Object message;
     private State messageState;
     private int numbOfCurrentString = 1;
-    public StringCommand(String message){
+    StringCommand(String message) throws WrongMethodTypeException {
         this.message = message;
         this.messageState = State.String;
     }
@@ -24,7 +26,7 @@ public class StringCommand implements Command{
     }
 
     public String toString(){
-        return (String) this.getMessage();//message.toString();
+        return (String) this.getMessage();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class StringCommand implements Command{
         return messageState;
     }
 
-    public Command sum(Command adjacentCommand) {
+    public Command sum(Command adjacentCommand)  throws WrongMethodTypeException {
         if (message.equals((adjacentCommand.getMessage()))){
             numbOfCurrentString ++;
             return this;
