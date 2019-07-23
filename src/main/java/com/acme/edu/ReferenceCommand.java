@@ -42,10 +42,8 @@ public class ReferenceCommand implements Command {
         return messageState;
     }
 
-    public Command sum(Command adjacentCommand) {
-        return null;
        /* if (!overflow(message)){
             return  (int)message + adjacentCommand;
         }*/
     }
-}
+

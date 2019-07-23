@@ -4,7 +4,7 @@ import java.lang.invoke.WrongMethodTypeException;
 
 import static java.lang.System.lineSeparator;
 
-public abstract class StringArrayCommand implements Command {
+public class StringArrayCommand implements Command {
     private static Object message;
     private static  State messageState;
     public StringArrayCommand(String... message) throws WrongMethodTypeException {
