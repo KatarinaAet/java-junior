@@ -3,6 +3,7 @@ package com.acme.edu;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 import static org.junit.Assert.*;
 
 /**
@@ -10,6 +11,7 @@ import static org.junit.Assert.*;
  */
 public class IntCommandTest {
     static Command dummy = new IntCommand(666);
+    static Command dummy2 = new IntCommand(1);
 
     @Test
     public void shouldReturnPrimitiveTypeName() throws Exception {
@@ -41,12 +43,9 @@ public class IntCommandTest {
 
     @Test
     public void sumEqual() throws Exception {
-        Assert.assertEquals(666,dummy.sum(dummy));
+
+        Assert.assertEquals(667, dummy.sum(dummy2));
     }
 
-    @Test
-    public void sum() throws Exception {
-
-    }
 
 }
