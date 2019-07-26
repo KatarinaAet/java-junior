@@ -5,7 +5,7 @@ import java.io.IOException;
 public class LogControl {
     public static String buffer = "";
     private static LogTypeBuffer typeBuffer = new LogTypeBuffer();
-    private static ConsolSaver consolOut = new ConsolSaver();
+    private static ConsoleSaver consolеOut = new ConsoleSaver();
     private static FileSaver fileOut = new FileSaver();
     public static Command process(Command current, Command inputCommand) throws IOException {
         typeBuffer.add(inputCommand.typedMessage());
@@ -16,7 +16,7 @@ public class LogControl {
             e.printStackTrace();
         }*/
         //System.out.println(buffer + current + "\n");
-        consolOut.print(buffer + current + "\n");
+        consolеOut.print(buffer + current + "\n");
         fileOut.print(buffer + current + "\n");
         fileOut.closeFile();
         return current;

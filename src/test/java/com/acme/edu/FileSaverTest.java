@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
  * Created by Java_1 on 25.07.2019.
  */
 public class FileSaverTest {
-    //private File path = new File("log_Info.txt");
     @Test
     public void ShouldSaveInformation() throws IOException {
         FileSaver saver = new FileSaver();
@@ -23,7 +22,6 @@ public class FileSaverTest {
         saver.closeFile();
         List<String> info = Files.readAllLines(path.toPath());
         Assert.assertEquals("Hello", info.get(0));
-        //Assert.assertEquals("Hello", Files.readAllLines(path.toPath()).forEach(a->a.toString()));
     }
 
     @Test
